@@ -89,6 +89,6 @@
 <script src="{{ asset('js/jsqrcode-combined.js') }}"></script>
 <script src="{{ asset('js/html5-qrcode.js') }}"></script>
 <script src="{{ asset('js/auth-login.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="/js/chart.js"></script>
 @stack('script')
 </html>
