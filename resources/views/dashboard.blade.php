@@ -39,6 +39,9 @@ function getData() {
     $.ajax({
         url: '/quick/count',
         type: 'GET',
+        async:true,
+        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        crossDomain:true,
         success: function(response) {
             var A = response.jokowi
             var B = response.prabowo
@@ -59,6 +62,9 @@ function proggess() {
     $.ajax({
         url: '/quick/proses',
         type: 'GET',
+        async:true,
+        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        crossDomain:true,
         success: function(response) {
             var A = response.prosses 
             var B = response.total
