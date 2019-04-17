@@ -37,7 +37,7 @@
 <script>
 function getData() {
     $.ajax({
-        url: '/data/suara',
+        url: '{{url("data/suara")}}',
         type: 'GET',
         async: true,
         contentType: 'application/json',
@@ -59,7 +59,7 @@ function getData() {
 
 function proggess() {
     $.ajax({
-        url: '/data/proses',
+        url: '{{url("data/proses")}}',
         type: 'GET',
         async:true,
         contentType: 'application/json',
