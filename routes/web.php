@@ -27,8 +27,8 @@ Route::get('logout','Auth\LoginController@logout')->name('logout');
 
 Route::post('/home/upload_image', 'HomeController@uploadImage')->name('upload.image');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/quick/count', 'HomeController@api')->name('api');
-Route::get('/quick/proses', 'HomeController@proggress')->name('proggress');
+Route::get('/data/suara', 'HomeController@api')->name('api');
+Route::get('/data/proses', 'HomeController@proggress')->name('proggress');
 Route::get('/python', 'HomeController@runPython')->name('python');
 Route::get('testing',function(){
     $data = file_get_contents('https://pemilu2019.kpu.go.id/static/json/hhcw/ppwp.json');
