@@ -39,8 +39,7 @@ function getData() {
     $.ajax({
         url: '/quick/count',
         type: 'GET',
-        async:true,
-        dataType : 'jsonp',   //you may use jsonp for cross origin request
+        async: true,
         crossDomain:true,
         success: function(response) {
             var A = response.jokowi
@@ -48,7 +47,6 @@ function getData() {
             var totalALL = A+B;
             var totalA = (A/totalALL)*100;
             var totalB = (B/totalALL)*100;
-            console.log(totalA); 
             chart(totalA.toFixed(2),totalB.toFixed(2))
             $('#a').html(A)
             $('#b').html(B)
@@ -63,7 +61,6 @@ function proggess() {
         url: '/quick/proses',
         type: 'GET',
         async:true,
-        dataType : 'jsonp',   //you may use jsonp for cross origin request
         crossDomain:true,
         success: function(response) {
             var A = response.prosses 
