@@ -36,6 +36,8 @@ class HomeController extends Controller
 
     public function api(Request $request)
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
         $data = file_get_contents('https://pemilu2019.kpu.go.id/static/json/hhcw/ppwp.json');
         // $result = json_encode($data);
         $final  = json_decode($data,true);
@@ -50,7 +52,9 @@ class HomeController extends Controller
     }
 
     public function proggress(Request $request)
-    {
+    {   
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
         $data = file_get_contents('https://pemilu2019.kpu.go.id/static/json/hhcw/ppwp.json');
         // $result = json_encode($data);
         $final  = json_decode($data,true);
