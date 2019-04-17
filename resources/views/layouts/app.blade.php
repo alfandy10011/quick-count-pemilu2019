@@ -14,12 +14,9 @@
 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <style>
         .footer {
             position: relative;
@@ -85,9 +82,6 @@
     </div>
 </body>
 <script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/jsqrcode-combined.js') }}"></script>
-<script src="{{ asset('js/html5-qrcode.js') }}"></script>
-<script src="{{ asset('js/auth-login.js') }}"></script>
 <script src="/js/chart.js"></script>
 @stack('script')
 </html>
