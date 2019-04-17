@@ -40,6 +40,7 @@ function getData() {
         url: '/quick/count',
         type: 'GET',
         async: true,
+        contentType: 'application/json',
         crossDomain:true,
         success: function(response) {
             var A = response.jokowi
@@ -61,6 +62,7 @@ function proggess() {
         url: '/quick/proses',
         type: 'GET',
         async:true,
+        contentType: 'application/json',
         crossDomain:true,
         success: function(response) {
             var A = response.prosses 
