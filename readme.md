@@ -23,3 +23,12 @@ follow my github for support me.
 instagram : @apsyadiraa
 email : apsya8@gmail.com
 
+
+quick.test
+```bash
+
+composer Install
+php artisan key:generate
+php artisan migrate 
+```
+
